@@ -1,10 +1,10 @@
 // To parse this JSON data, do
 //
-//     final welcome = welcomeFromJson(jsonString);
+//     final News = NewsFromJson(jsonString);
 
 import 'dart:convert';
 
-ResponseModel welcomeFromJson(String str) =>
+ResponseModel NewsFromJson(String str) =>
     ResponseModel.fromJson(json.decode(str));
 
 String responseToJson(ResponseModel data) => json.encode(data.toJson());
@@ -403,7 +403,7 @@ class MatchScore {
 }
 
 class TeamScore {
-  Inngs inngs1;
+  Inngs? inngs1;
   Inngs? inngs2;
 
   TeamScore({
@@ -412,12 +412,12 @@ class TeamScore {
   });
 
   factory TeamScore.fromJson(Map<String, dynamic> json) => TeamScore(
-        inngs1: Inngs.fromJson(json["inngs1"]),
-        inngs2: json["inngs2"] == null ? null : Inngs.fromJson(json["inngs2"]),
+        inngs1: json['inning1']==null?null:Inngs.fromJson(json["inngs1"]),
+        inngs2:  json['inning1']==null?null:Inngs.fromJson(json["inngs2"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "inngs1": inngs1.toJson(),
+        "inngs1": inngs1?.toJson(),
         "inngs2": inngs2?.toJson(),
       };
 }
